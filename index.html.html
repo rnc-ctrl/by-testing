@@ -1,0 +1,970 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bromley Y — User Journey: Referral to Discharge</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { font-size: 15px; scroll-behavior: smooth; }
+  body {
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    background: #F5F0EB;
+    color: #4A4A4A;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+  :root {
+    --deep-teal: #1A3C40;
+    --mid-teal: #2D6A6A;
+    --soft-sage: #A8D5BA;
+    --warm-amber: #E8A838;
+    --light-bg: #F5F0EB;
+    --charcoal: #4A4A4A;
+    --white: #FFFFFF;
+    --question-bg: #FFF3DC;
+    --callout-bg: #FFF8ED;
+    --light-grey: #E8E4DF;
+    --pale-sage: #D6ECE0;
+  }
+  .page-wrap { max-width: 1200px; margin: 0 auto; padding: 0 1.25rem; }
+
+  /* ===== HEADER ===== */
+  .page-header {
+    background: var(--deep-teal);
+    color: var(--white);
+    padding: 2.2rem 0 1.8rem;
+  }
+  .page-header .page-wrap { position: relative; }
+  .page-header::after { display: none; }
+  .header-accent { display: block; width: 80px; height: 4px; background: var(--warm-amber); margin-top: 1rem; border-radius: 2px; }
+  .page-header h1 { font-size: 1.65rem; font-weight: 600; letter-spacing: -0.01em; }
+  .page-header .subtitle { font-size: 0.95rem; color: var(--soft-sage); margin-top: 0.4rem; }
+
+  /* ===== INTRO ===== */
+  .intro { margin: 2rem 0 1.5rem; font-size: 0.92rem; color: var(--charcoal); line-height: 1.6; }
+  .intro p { margin-bottom: 0.6rem; max-width: 800px; }
+
+  /* ===== LEGEND ===== */
+  .legend-bar {
+    margin: 0 0 2rem;
+    padding: 0.9rem 1.4rem;
+    background: var(--white);
+    border: 1px solid var(--light-grey);
+    border-radius: 8px;
+    display: flex; flex-wrap: wrap; gap: 1.2rem; align-items: center;
+  }
+  .legend-bar .legend-title { font-size: 0.78rem; font-weight: 600; color: var(--mid-teal); text-transform: uppercase; letter-spacing: 0.05em; margin-right: 0.4rem; }
+  .legend-item { display: flex; align-items: center; gap: 0.45rem; font-size: 0.8rem; color: var(--charcoal); }
+  .legend-swatch { width: 28px; height: 18px; border-radius: 4px; flex-shrink: 0; }
+  .swatch-process { background: var(--white); border: 2px solid var(--mid-teal); }
+  .swatch-meeting { background: var(--deep-teal); }
+  .swatch-system { background: var(--pale-sage); border: 1px solid var(--soft-sage); }
+  .swatch-comms { background: var(--white); border: 2px dashed var(--warm-amber); }
+  .swatch-target { background: var(--callout-bg); border: 2px solid var(--soft-sage); }
+  .legend-divider { width: 1px; height: 20px; background: var(--light-grey); }
+  .legend-arrow-item { display: flex; align-items: center; gap: 0.4rem; font-size: 0.8rem; color: var(--charcoal); }
+  .legend-arrow-demo { display: flex; align-items: center; gap: 2px; }
+  .legend-arrow-demo .la-line { width: 20px; height: 2px; background: var(--mid-teal); }
+  .legend-arrow-demo .la-head { width: 0; height: 0; border-top: 5px solid transparent; border-bottom: 5px solid transparent; border-left: 7px solid var(--mid-teal); }
+
+  /* ===== PHASE BANDS ===== */
+  .phase-band {
+    margin: 0 0 2.5rem;
+    background: var(--white);
+    border-radius: 10px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+    overflow: hidden;
+  }
+  .phase-header {
+    padding: 1rem 1.8rem;
+    display: flex; align-items: center; gap: 1rem;
+    background: linear-gradient(135deg, #1A3C40 0%, #2D6A6A 100%);
+  }
+  .phase-number {
+    background: var(--warm-amber); color: var(--deep-teal);
+    font-weight: 700; font-size: 0.82rem;
+    width: 28px; height: 28px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+  }
+  .phase-header h2 { font-size: 1.12rem; font-weight: 600; color: white; }
+  .phase-header .phase-desc { font-size: 0.82rem; color: var(--soft-sage); margin-left: auto; font-style: italic; }
+
+  /* ===== STEP BAR ===== */
+  .step-bar {
+    display: grid; align-items: center; padding: 0.5rem 0 0;
+    border-bottom: 2px solid var(--light-grey); background: #FAFAF8;
+  }
+  .step-bar-label {
+    padding: 0.35rem 1rem 0.35rem 1.4rem;
+    font-size: 0.7rem; font-weight: 600; color: var(--mid-teal);
+    text-transform: uppercase; letter-spacing: 0.04em;
+    border-right: 2px solid var(--light-grey); background: #FAFAF8;
+  }
+  .step-bar-cell { display: flex; align-items: center; justify-content: center; padding: 0.3rem 0.4rem; }
+  .step-num {
+    background: var(--mid-teal); color: white;
+    font-size: 0.65rem; font-weight: 700;
+    width: 20px; height: 20px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0; z-index: 1;
+  }
+  .step-arrow { flex-grow: 1; height: 2px; background: var(--light-grey); position: relative; min-width: 8px; }
+  .step-arrow::after {
+    content: ''; position: absolute; right: -1px; top: -4px;
+    border-top: 5px solid transparent; border-bottom: 5px solid transparent; border-left: 6px solid var(--light-grey);
+  }
+  .step-bar-cell:last-child .step-arrow { display: none; }
+
+  /* ===== SWIM GRID ===== */
+  .swim-grid { display: grid; gap: 0; }
+  .lane-label {
+    padding: 0.6rem 0.8rem 0.6rem 1.4rem;
+    font-size: 0.72rem; font-weight: 600; color: var(--deep-teal);
+    text-transform: uppercase; letter-spacing: 0.04em;
+    border-right: 2px solid var(--light-grey); background: #FAFAF8;
+    display: flex; align-items: center;
+  }
+  .grid-cell {
+    display: flex; align-items: center; justify-content: center;
+    padding: 0.5rem 0.35rem; border-bottom: 1px solid #F0EDE8; min-height: 55px;
+  }
+  .grid-cell.empty { }
+
+  /* ===== STEP CARDS ===== */
+  .step-card {
+    border-radius: 7px; padding: 0.45rem 0.7rem 0.35rem;
+    font-size: 0.82rem; cursor: pointer; position: relative;
+    transition: box-shadow 0.15s, transform 0.1s;
+    width: 100%; max-width: 175px; user-select: none; z-index: 1;
+  }
+  .step-card:hover { box-shadow: 0 2px 8px rgba(0,0,0,0.12); transform: translateY(-1px); }
+  .step-card .step-title { font-weight: 600; font-size: 0.76rem; line-height: 1.3; }
+  .step-card .step-brief { font-size: 0.68rem; color: #666; margin-top: 0.15rem; line-height: 1.3; }
+  .step-card .expand-icon {
+    position: absolute; top: 0.35rem; right: 0.45rem;
+    font-size: 0.6rem; color: #999;
+  }
+  /* System tags on card face */
+  .card-tags { display: flex; flex-wrap: wrap; gap: 3px; margin-top: 0.25rem; }
+  .card-tag {
+    font-size: 0.58rem; font-weight: 600; padding: 1px 5px;
+    border-radius: 3px; background: var(--pale-sage); color: var(--deep-teal);
+    line-height: 1.4;
+  }
+
+  .card-process { background: var(--white); border: 2px solid var(--mid-teal); }
+  .card-process .step-title { color: var(--deep-teal); }
+  .card-meeting { background: var(--deep-teal); border: 2px solid var(--deep-teal); }
+  .card-meeting .step-title { color: var(--white); }
+  .card-meeting .step-brief { color: var(--soft-sage); }
+  .card-meeting .expand-icon { color: var(--soft-sage); }
+  .card-meeting .card-tag { background: rgba(168,213,186,0.25); color: var(--soft-sage); }
+  .card-system { background: var(--pale-sage); border: 1px solid var(--soft-sage); }
+  .card-system .step-title { color: var(--deep-teal); }
+  .card-comms { background: var(--white); border: 2px dashed var(--warm-amber); }
+  .card-comms .step-title { color: var(--deep-teal); }
+  .card-target { background: var(--callout-bg); border: 2px solid var(--soft-sage); }
+  .card-target .step-title { color: var(--deep-teal); }
+
+  /* ===== DETAIL PANEL ===== */
+  .detail-overlay {
+    display: none; position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(26, 60, 64, 0.25);
+    z-index: 100; justify-content: center; align-items: center; padding: 2rem;
+  }
+  .detail-overlay.visible { display: flex; }
+  .detail-panel {
+    background: var(--white); border-radius: 12px;
+    max-width: 600px; width: 100%; max-height: 80vh;
+    overflow-y: auto; box-shadow: 0 8px 30px rgba(0,0,0,0.15); position: relative;
+  }
+  .detail-panel-header {
+    padding: 1.2rem 1.5rem 0.8rem; border-bottom: 1px solid var(--light-grey);
+    position: sticky; top: 0; background: var(--white); border-radius: 12px 12px 0 0; z-index: 1;
+  }
+  .detail-panel-header h3 { font-size: 1rem; color: var(--deep-teal); font-weight: 600; padding-right: 2rem; }
+  .detail-panel-header .detail-phase { font-size: 0.75rem; color: var(--mid-teal); margin-top: 0.2rem; }
+  .detail-close {
+    position: absolute; top: 1rem; right: 1.2rem;
+    background: none; border: none; font-size: 1.3rem; color: #999;
+    cursor: pointer; width: 32px; height: 32px;
+    display: flex; align-items: center; justify-content: center; border-radius: 6px;
+  }
+  .detail-close:hover { background: var(--light-bg); color: var(--charcoal); }
+  .detail-body { padding: 1.2rem 1.5rem 1.5rem; }
+  .detail-body h4 {
+    font-size: 0.82rem; font-weight: 600; color: var(--mid-teal);
+    text-transform: uppercase; letter-spacing: 0.04em; margin: 1rem 0 0.4rem;
+  }
+  .detail-body h4:first-child { margin-top: 0; }
+  .detail-body p { font-size: 0.85rem; line-height: 1.55; margin-bottom: 0.5rem; }
+  .detail-body ul { padding-left: 1.2rem; margin-bottom: 0.5rem; }
+  .detail-body li { font-size: 0.85rem; line-height: 1.5; margin-bottom: 0.3rem; }
+  .detail-current {
+    background: #F9F8F6; border-left: 3px solid var(--light-grey);
+    padding: 0.6rem 0.9rem; margin: 0.6rem 0; border-radius: 0 6px 6px 0;
+  }
+  .detail-current .current-label { font-size: 0.72rem; font-weight: 600; color: #999; text-transform: uppercase; letter-spacing: 0.04em; }
+  .detail-current p { font-size: 0.82rem; color: #777; margin-top: 0.2rem; }
+  .detail-question-box {
+    background: var(--question-bg); border: 1px solid var(--warm-amber);
+    border-radius: 6px; padding: 0.6rem 0.9rem; margin: 0.6rem 0;
+  }
+  .detail-question-box .q-label { font-size: 0.72rem; font-weight: 600; color: var(--warm-amber); text-transform: uppercase; letter-spacing: 0.04em; }
+  .detail-question-box p { font-size: 0.82rem; color: var(--charcoal); margin-top: 0.15rem; }
+  .detail-system-tag {
+    display: inline-block; background: var(--pale-sage); color: var(--deep-teal);
+    font-size: 0.72rem; font-weight: 600; padding: 0.15rem 0.5rem;
+    border-radius: 3px; margin-right: 0.3rem; margin-bottom: 0.3rem;
+  }
+
+  /* ===== FOOTER ===== */
+  .page-footer {
+    text-align: center; padding: 1.5rem 0; font-size: 0.75rem;
+    color: #999; border-top: 1px solid var(--light-grey);
+  }
+
+  /* ===== PRINT ===== */
+  @media print {
+    html { font-size: 10px; }
+    body { background: white; }
+    .page-wrap { padding: 0 1rem; }
+    .page-header { padding: 1rem 0 0.8rem; }
+    .page-header h1 { font-size: 1.5rem; }
+    .phase-band { box-shadow: none; border: 1px solid #ddd; page-break-inside: avoid; margin-bottom: 1rem; }
+    .step-card { cursor: default; }
+    .step-card:hover { box-shadow: none; transform: none; }
+    .expand-icon { display: none !important; }
+    .detail-overlay { display: none !important; }
+  }
+  @media (max-width: 900px) {
+    .page-wrap { padding: 0 1rem; }
+    .phase-band { overflow-x: auto; }
+    .step-card { max-width: 140px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="page-header">
+  <div class="page-wrap">
+    <h1>User Journey: Referral to Discharge</h1>
+    <div class="subtitle">Bromley Y &mdash; Digital Transformation Project &mdash; Draft, April 2026</div>
+    <div class="header-accent"></div>
+  </div>
+</header>
+
+<div class="page-wrap">
+
+<section class="intro">
+  <p>This document maps the target user journey for young people accessing Bromley Y services, from initial referral through to discharge. It covers the two core delivery streams &mdash; Mental Health Support Teams (MHST) and Mental Health and Emotional Wellbeing Services (MHEWS) &mdash; and the shared intake pathway through iSPA.</p>
+  <p>Click any step to view further detail. Steps read left to right within each phase; where steps sit in the same column, they happen at the same stage. System tags on each card show which platforms are involved.</p>
+</section>
+
+<div class="legend-bar">
+  <span class="legend-title">Key</span>
+  <div class="legend-item"><div class="legend-swatch swatch-process"></div> Process step</div>
+  <div class="legend-item"><div class="legend-swatch swatch-meeting"></div> Meeting / decision</div>
+  <div class="legend-item"><div class="legend-swatch swatch-system"></div> System interaction</div>
+  <div class="legend-item"><div class="legend-swatch swatch-comms"></div> Communication</div>
+  <div class="legend-divider"></div>
+  <div class="legend-arrow-item">
+    <div class="legend-arrow-demo"><div class="la-line"></div><div class="la-head"></div></div>
+    Sequential flow
+  </div>
+  <div class="legend-divider"></div>
+  <div class="legend-item"><span class="card-tag" style="font-size:0.7rem;">RiO</span> System tag</div>
+</div>
+
+<!-- ========== PHASE 1 ========== -->
+<section class="phase-band" id="phase1">
+  <div class="phase-header">
+    <div class="phase-number">1</div>
+    <h2>Referral and Front Door</h2>
+    <span class="phase-desc">Referral received &rarr; stream allocation</span>
+  </div>
+  <div class="step-bar" style="grid-template-columns: 120px repeat(6, 1fr);">
+    <div class="step-bar-label">Step</div>
+    <div class="step-bar-cell"><span class="step-num">1</span><div class="step-arrow"></div></div>
+    <div class="step-bar-cell"><span class="step-num">2</span><div class="step-arrow"></div></div>
+    <div class="step-bar-cell"><span class="step-num">3</span><div class="step-arrow"></div></div>
+    <div class="step-bar-cell"><span class="step-num">4</span><div class="step-arrow"></div></div>
+    <div class="step-bar-cell"><span class="step-num">5</span><div class="step-arrow"></div></div>
+    <div class="step-bar-cell"><span class="step-num">6</span></div>
+  </div>
+  <div class="swim-grid" style="grid-template-columns: 120px repeat(6, 1fr);">
+
+    <div class="lane-label">Referrer /<br>External</div>
+    <div class="grid-cell">
+      <div class="step-card card-process" data-detail="referral-received">
+        <span class="expand-icon">&#9662;</span>
+        <div class="step-title">Referral submitted</div>
+        <div class="step-brief">GP, school, self-referral or professional</div>
+      </div>
+    </div>
+    <div class="grid-cell empty"></div>
+    <div class="grid-cell empty"></div>
+    <div class="grid-cell empty"></div>
+    <div class="grid-cell empty"></div>
+    <div class="grid-cell empty"></div>
+
+    <div class="lane-label">iSPA /<br>Front Door</div>
+    <div class="grid-cell">
+      <div class="step-card card-system" data-detail="ispa-logging">
+        <span class="expand-icon">&#9662;</span>
+        <div class="step-title">Referral logged</div>
+        <div class="step-brief">Entered into RiO</div>
+        <div class="card-tags"><span class="card-tag">RiO</span></div>
+      </div>
+    </div>
+    <div class="grid-cell">
+      <div class="step-card card-meeting" data-detail="ispa-screening">
+        <span class="expand-icon">&#9662;</span>
+        <div class="step-title">iSPA screening</div>
+        <div class="step-brief">Daily whole-team review: 09.45</div>
+      </div>
+    </div>
+    <div class="grid-cell">
+      <div class="step-card card-meeting" data-detail="ispa-decision">
+        <span class="expand-icon">&#9662;</span>
+        <div class="step-title">iSPA decision</div>
+        <div class="step-brief">Daily whole-team review: 13.00</div>
+        <div class="card-tags"><span class="card-tag">RiO</span></div>
+      </div>
+    </div>
+    <div class="grid-cell">
+      <div class="step-card card-comms" data-detail="referrer-outcome">
+        <span class="expand-icon">&#9662;</span>
+        <div class="step-title">Referrer notified</div>
+        <div class="step-brief">Outcome communicated</div>
+      </div>
+    </div>
+    <div class="grid-cell empty"></div>
+    <div class="grid-cell empty"></div>
+
+    <div class="lane-label">Bromley Y<br>Joint Review</div>
+    <div class="grid-cell empty"></div>
+    <div class="grid-cell empty"></div>
+    <div class="grid-cell empty"></div>
+    <div class="grid-cell empty"></div>
+    <div class="grid-cell">
+      <div class="step-card card-meeting" data-detail="joint-review">
+        <span class="expand-icon">&#9662;</span>
+        <div class="step-title">Joint BY review</div>
+        <div class="step-brief">MHST &amp; MHEWS allocation</div>
+      </div>
+    </div>
+    <div class="grid-cell">
+      <div class="step-card card-process" data-detail="stream-allocation">
+        <span class="expand-icon">&#9662;</span>
+        <div class="step-title">Provisional allocation</div>
+        <div class="step-brief">MHST or MHEWS</div>
+        <div class="card-tags"><span class="card-tag">RiO</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== PHASE 2 ========== -->
+<section class="phase-band" id="phase2">
+  <div class="phase-header">
+    <div class="phase-number">2</div>
+    <h2>Assessment and Allocation</h2>
+    <span class="phase-desc">Stream entry &rarr; first appointment</span>
+  </div>
+  <div class="step-bar" style="grid-template-columns: 120px repeat(5, 1fr);">
+    <div class="step-bar-label">Step</div>
+    <div class="step-bar-cell"><span class="step-num">1</span><div class="step-arrow"></div></div>
+    <div class="step-bar-cell"><span class="step-num">2</span><div class="step-arrow"></div></div>
+    <div class="step-bar-cell"><span class="step-num">3</span><div class="step-arrow"></div></div>
+    <div class="step-bar-cell"><span class="step-num">4</span><div class="step-arrow"></div></div>
+    <div class="step-bar-cell"><span class="step-num">5</span></div>
+  </div>
+  <div class="swim-grid" style="grid-template-columns: 120px repeat(5, 1fr);">
+
+    <div class="lane-label">BY Clinical<br>Team</div>
+    <div class="grid-cell">
+      <div class="step-card card-process" data-detail="assessment">
+        <span class="expand-icon">&#9662;</span>
+        <div class="step-title">Assessment</div>
+        <div class="step-brief">Standard BY assessment</div>
+        <div class="card-tags"><span class="card-tag">RiO</span></div>
+      </div>
+    </div>
+    <div class="grid-cell">
+      <div class="step-card card-process" data-detail="pathway-planning">
+        <span class="expand-icon">&#9662;</span>
+        <div class="step-title">Pathway planning</div>
+        <div class="step-brief">Intervention and modality agreed</div>
+        <div class="card-tags"><span class="card-tag">RiO</span></div>
+      </div>
+    </div>
+    <div class="grid-cell">
+      <div class="step-card card-comms" data-detail="allocation-notification">
+        <span class="expand-icon">&#9662;</span>
+        <div class="step-title">Allocation notification</div>
+        <div class="step-brief">Practitioner formally notified</div>
+        <div class="card-tags"><span class="card-tag">RiO</span></div>
+      </div>
+    </div>
+    <div class="grid-cell empty"></div>
+    <div class="grid-cell empty"></div>
+
+    <div class="lane-label">Waiting<br>Support</div>
+    <div class="grid-cell">
+      <div class="step-card card-system" data-detail="pod-setup">
+        <span class="expand-icon">&#9662;</span>
+        <div class="step-title">POD setup</div>
+        <div class="step-brief">Account created for outcome measures</div>
+        <div class="card-tags"><span class="card-tag">POD</span></div>
+      </div>
+    </div>
+    <div class="grid-cell empty"></div>
+    <div class="grid-cell">
+      <div class="step-card card-comms" data-detail="welcome-pack">
+        <span class="expand-icon">&#9662;</span>
+        <div class="step-title">Welcome pack sent</div>
+        <div class="step-brief">Standard induction pack</div>
+      </div>
+    </div>
+    <div class="grid-cell">
+      <div class="step-card card-comms" data-detail="waiting-well">
+        <span class="expand-icon">&#9662;</span>
+        <div class="step-title">Waiting well check-ins</div>
+        <div class="step-brief">Standardised contact at intervals</div>
+      </div>
+    </div>
+    <div class="grid-cell empty"></div>
+
+    <div class="lane-label">Management<br>/ MDT</div>
+    <div class="grid-cell empty"></div>
+    <div class="grid-cell empty"></div>
+    <div class="grid-cell empty"></div>
+    <div class="grid-cell">
+      <div class="step-card card-meeting" data-detail="rrp-review">
+        <span class="expand-icon">&#9662;</span>
+        <div class="step-title">Risk Review Panel</div>
+        <div class="step-brief">Weekly review of flagged cases</div>
+      </div>
+    </div>
+    <div class="grid-cell empty"></div>
+  </div>
+</section>
+
+<!-- ========== PHASE 3 ========== -->
+<section class="phase-band" id="phase3">
+  <div class="phase-header">
+    <div class="phase-number">3</div>
+    <h2>Intervention and Discharge</h2>
+    <span class="phase-desc">First session &rarr; case closure</span>
+  </div>
+  <div class="step-bar" style="grid-template-columns: 120px repeat(7, 1fr);">
+    <div class="step-bar-label">Step</div>
+    <div class="step-bar-cell"><span class="step-num">1</span><div class="step-arrow"></div></div>
+    <div class="step-bar-cell"><span class="step-num">2</span><div class="step-arrow"></div></div>
+    <div class="step-bar-cell"><span class="step-num">3</span><div class="step-arrow"></div></div>
+    <div class="step-bar-cell"><span class="step-num">4</span><div class="step-arrow"></div></div>
+    <div class="step-bar-cell"><span class="step-num">5</span><div class="step-arrow"></div></div>
+    <div class="step-bar-cell"><span class="step-num">6</span><div class="step-arrow"></div></div>
+    <div class="step-bar-cell"><span class="step-num">7</span></div>
+  </div>
+  <div class="swim-grid" style="grid-template-columns: 120px repeat(7, 1fr);">
+
+    <div class="lane-label">Outcome<br>Measures</div>
+    <div class="grid-cell">
+      <div class="step-card card-system" data-detail="baseline-measures">
+        <span class="expand-icon">&#9662;</span>
+        <div class="step-title">Baseline measures</div>
+        <div class="step-brief">Collected before first session</div>
+        <div class="card-tags"><span class="card-tag">POD</span></div>
+      </div>
+    </div>
+    <div class="grid-cell empty"></div>
+    <div class="grid-cell empty"></div>
+    <div class="grid-cell">
+      <div class="step-card card-system" data-detail="midpoint-measures">
+        <span class="expand-icon">&#9662;</span>
+        <div class="step-title">Mid-point measures</div>
+        <div class="step-brief">Progress tracked during intervention</div>
+        <div class="card-tags"><span class="card-tag">POD</span></div>
+      </div>
+    </div>
+    <div class="grid-cell empty"></div>
+    <div class="grid-cell">
+      <div class="step-card card-system" data-detail="end-measures">
+        <span class="expand-icon">&#9662;</span>
+        <div class="step-title">End measures</div>
+        <div class="step-brief">Collected at final session</div>
+        <div class="card-tags"><span class="card-tag">POD</span></div>
+      </div>
+    </div>
+    <div class="grid-cell empty"></div>
+
+    <div class="lane-label">Practitioner</div>
+    <div class="grid-cell empty"></div>
+    <div class="grid-cell">
+      <div class="step-card card-process" data-detail="first-appointment">
+        <span class="expand-icon">&#9662;</span>
+        <div class="step-title">First appointment</div>
+        <div class="step-brief">Initial therapeutic session</div>
+        <div class="card-tags"><span class="card-tag">RiO</span><span class="card-tag">Outlook</span></div>
+      </div>
+    </div>
+    <div class="grid-cell">
+      <div class="step-card card-process" data-detail="active-intervention">
+        <span class="expand-icon">&#9662;</span>
+        <div class="step-title">Active intervention</div>
+        <div class="step-brief">Ongoing sessions by modality</div>
+        <div class="card-tags"><span class="card-tag">RiO</span><span class="card-tag">Outlook</span></div>
+      </div>
+    </div>
+    <div class="grid-cell empty"></div>
+    <div class="grid-cell empty"></div>
+    <div class="grid-cell empty"></div>
+    <div class="grid-cell empty"></div>
+
+    <div class="lane-label">Supervision<br>/ Review</div>
+    <div class="grid-cell empty"></div>
+    <div class="grid-cell empty"></div>
+    <div class="grid-cell empty"></div>
+    <div class="grid-cell">
+      <div class="step-card card-meeting" data-detail="session-five-review">
+        <span class="expand-icon">&#9662;</span>
+        <div class="step-title">Mid-point review</div>
+        <div class="step-brief">Session 5 checkpoint</div>
+      </div>
+    </div>
+    <div class="grid-cell">
+      <div class="step-card card-meeting" data-detail="rrp-escalation">
+        <span class="expand-icon">&#9662;</span>
+        <div class="step-title">RRP escalation</div>
+        <div class="step-brief">If risk or pathway change</div>
+      </div>
+    </div>
+    <div class="grid-cell">
+      <div class="step-card card-process" data-detail="discharge-decision">
+        <span class="expand-icon">&#9662;</span>
+        <div class="step-title">Discharge decision</div>
+        <div class="step-brief">Management oversight</div>
+        <div class="card-tags"><span class="card-tag">RiO</span></div>
+      </div>
+    </div>
+    <div class="grid-cell empty"></div>
+
+    <div class="lane-label">Discharge<br>/ Closure</div>
+    <div class="grid-cell empty"></div>
+    <div class="grid-cell empty"></div>
+    <div class="grid-cell empty"></div>
+    <div class="grid-cell empty"></div>
+    <div class="grid-cell empty"></div>
+    <div class="grid-cell">
+      <div class="step-card card-process" data-detail="closing-summary">
+        <span class="expand-icon">&#9662;</span>
+        <div class="step-title">Closing summary</div>
+        <div class="step-brief">Standard summary completed</div>
+        <div class="card-tags"><span class="card-tag">RiO</span></div>
+      </div>
+    </div>
+    <div class="grid-cell">
+      <div class="step-card card-comms" data-detail="gp-letter">
+        <span class="expand-icon">&#9662;</span>
+        <div class="step-title">GP notification</div>
+        <div class="step-brief">Discharge letter sent</div>
+        <div class="card-tags"><span class="card-tag">RiO</span></div>
+      </div>
+    </div>
+
+    <div class="lane-label">System /<br>Onward</div>
+    <div class="grid-cell empty"></div>
+    <div class="grid-cell empty"></div>
+    <div class="grid-cell empty"></div>
+    <div class="grid-cell empty"></div>
+    <div class="grid-cell empty"></div>
+    <div class="grid-cell">
+      <div class="step-card card-system" data-detail="rio-discharge">
+        <span class="expand-icon">&#9662;</span>
+        <div class="step-title">RiO discharge</div>
+        <div class="step-brief">Case closed on system</div>
+        <div class="card-tags"><span class="card-tag">RiO</span></div>
+      </div>
+    </div>
+    <div class="grid-cell">
+      <div class="step-card card-process" data-detail="onward-referral">
+        <span class="expand-icon">&#9662;</span>
+        <div class="step-title">Onward referral</div>
+        <div class="step-brief">If further support needed</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</div><!-- /page-wrap -->
+
+<div class="page-wrap">
+  <footer class="page-footer">
+    Bromley Y &mdash; Digital Transformation Project &mdash; Draft working document, April 2026 &mdash; Prepared by Owen Carter
+  </footer>
+</div>
+
+<!-- ========== DETAIL OVERLAY ========== -->
+<div class="detail-overlay" id="detailOverlay">
+  <div class="detail-panel" id="detailPanel">
+    <div class="detail-panel-header">
+      <h3 id="detailTitle"></h3>
+      <div class="detail-phase" id="detailPhase"></div>
+      <button class="detail-close" id="detailClose" aria-label="Close">&times;</button>
+    </div>
+    <div class="detail-body" id="detailBody"></div>
+  </div>
+</div>
+
+<script>
+const details = {
+  "referral-received": {
+    title: "Referral Submitted",
+    phase: "Phase 1 — Referral and Front Door",
+    html: `
+      <h4>What happens</h4>
+      <p>A referral is submitted to Bromley Y via the single point of access (iSPA). Referrals can come from GPs, schools, other professionals, or families directly through self-referral.</p>
+      <p>All referrals enter a single front door regardless of source or presenting need. The referral form captures initial information about the young person, the reason for referral, and any known risk factors.</p>
+    `
+  },
+  "ispa-logging": {
+    title: "Referral Logged in RiO",
+    phase: "Phase 1 — Referral and Front Door",
+    html: `
+      <h4>What happens</h4>
+      <p>The referral is entered into RiO by the iSPA administration team. This creates the initial record for the young person and begins the clock on referral-to-assessment timelines.</p>
+      <h4>System interactions</h4>
+      <p><span class="detail-system-tag">RiO</span> New referral record created. Ideally within 24 hours of receipt.</p>
+      <h4>Known considerations</h4>
+      <p>A fresh GP referral for a young person already open within Bromley Y does not always come through the standard iSPA process — this can require manual handling via email.</p>
+    `
+  },
+  "ispa-screening": {
+    title: "iSPA Screening Meeting",
+    phase: "Phase 1 — Referral and Front Door",
+    html: `
+      <h4>What happens</h4>
+      <p>A daily whole-team iSPA meeting reviews all new referrals received since the previous day's meeting. The purpose is initial screening: confirming that the referral is appropriate for Bromley Y or CAMHS, identifying any immediate risk concerns, and allocating referrals to individual iSPA practitioners for further review.</p>
+      <h4>Who is involved</h4>
+      <p>Full iSPA team.</p>
+      <div class="detail-current">
+        <div class="current-label">Current practice</div>
+        <p>The daily meeting currently runs at 09:45 as a 15-minute session. Referrals are allocated to iSPA practitioners at this point.</p>
+      </div>
+    `
+  },
+  "ispa-decision": {
+    title: "iSPA Decision Meeting",
+    phase: "Phase 1 — Referral and Front Door",
+    html: `
+      <h4>What happens</h4>
+      <p>A daily iSPA team meeting makes the substantive decision on each referral following the detailed review by practitioners. Possible outcomes are:</p>
+      <ul>
+        <li><strong>Accept into Bromley Y</strong> — case proceeds to stream allocation</li>
+        <li><strong>Refer to CAMHS</strong> — case requires specialist mental health services beyond BY’s scope</li>
+        <li><strong>Request more information</strong> — insufficient detail to make a safe decision</li>
+        <li><strong>Signpost</strong> — redirect to a more appropriate service</li>
+        <li><strong>Discharge</strong> — referral does not meet threshold</li>
+      </ul>
+      <p>Target: referrals decided within 72 hours of receipt; typical timescale is around 10 working days.</p>
+      <h4>System interactions</h4>
+      <p><span class="detail-system-tag">RiO</span> Decision and outcome recorded against the referral.</p>
+      <div class="detail-current">
+        <div class="current-label">Current practice</div>
+        <p>This meeting currently runs daily at 13:00. Currently the iSPA make a recommendation on MHST vs MHEWS but the preference is for this to be moved into the internal Bromley Y joint review.</p>
+      </div>
+    `
+  },
+  "referrer-outcome": {
+    title: "Referrer Notified of Outcome",
+    phase: "Phase 1 — Referral and Front Door",
+    html: `
+      <h4>What happens</h4>
+      <p>The referral source is notified of the iSPA decision. This communication should confirm the outcome (accepted, redirected, discharged), provide an indication of next steps where the young person has been accepted, and include any relevant signposting information where they have not.</p>
+      <h4>Target</h4>
+      <p>Timely, clear communication with the referrer after every decision. Where the young person is accepted, the family should also receive acknowledgement and an indication of what to expect.</p>
+    `
+  },
+  "joint-review": {
+    title: "Joint Bromley Y Review",
+    phase: "Phase 1 — Referral and Front Door",
+    html: `
+      <h4>What happens</h4>
+      <p>Once a referral has been accepted into Bromley Y, a joint review determines which delivery stream is the best fit for the young person. This is a single decision point involving both MHST and MHEWS, ensuring that the allocation is informed by the full range of Bromley Y’s offer.</p>
+      <p>The decision will be informed by both the context of the referral (e.g. MHST are more likely to take referrals linked to the school environment) and the modality of likely support (MHEWS have a greater range of therapeutic modalities e.g. CBT, family therapy, creative arts).</p>
+      <div class="detail-current">
+        <div class="current-label">Current practice</div>
+        <p>There is no joint MHST/MHEWS review meeting at present. Each stream runs its own review independently after iSPA screening. Cases sometimes bounce between MHST and MHEWS when the initial allocation from iSPA proves incorrect. The target is a single joint review to make this decision once.</p>
+      </div>
+    `
+  },
+  "stream-allocation": {
+    title: "Provisional Allocation",
+    phase: "Phase 1 — Referral and Front Door",
+    html: `
+      <h4>What happens</h4>
+      <p>The young person is provisionally allocated to either MHST or MHEWS based on the joint review decision. The case moves into the shared assessment and allocation workflow.</p>
+      <h4>System interactions</h4>
+      <p><span class="detail-system-tag">RiO</span> Case record updated with stream allocation.</p>
+    `
+  },
+  "assessment": {
+    title: "Standard BY Assessment",
+    phase: "Phase 2 — Assessment and Allocation",
+    html: `
+      <h4>What happens</h4>
+      <p>The practitioner conducts a standard Bromley Y assessment using the newly developed BY standard assessment form. This is a shared assessment process across both MHST and MHEWS, though the delivery setting and content of what each service can offer carries. Fuller assessment may be carried out where there are neurodiversity indicators or additional complexity. The assessment informs modality matching.</p>
+      <h4>System interactions</h4>
+      <p><span class="detail-system-tag">RiO</span> Assessment form completed and saved.</p>
+      <h4>Known considerations</h4>
+      <p>MHST practitioners accessing RiO from schools often experience bandwidth issues via VPN, leading to manual completion of forms and later upload. Bromley Y is collating a list of access problems to inform the digital transformation requirements.</p>
+    `
+  },
+  "pathway-planning": {
+    title: "Pathway Planning",
+    phase: "Phase 2 — Assessment and Allocation",
+    html: `
+      <h4>What happens</h4>
+      <p>Following assessment, the intervention approach is agreed. The pathway plan confirms the therapeutic approach, anticipated number of sessions, and any specific goals. Target: pathway planning should be a distinct, formally recorded step post-assessment, with joint cross-stream discussion where cases are complex or sit at the boundary.</p>
+      <h4>System interactions</h4>
+      <p><span class="detail-system-tag">RiO</span> Pathway plan recorded against the case.</p>
+      <div class="detail-current">
+        <div class="current-label">Current practice</div>
+        <p>Pathway planning is currently handled within each team separately. Cross-team planning happens ad hoc via email or informal contact between practice leads when a case needs to move streams. Modality-specific waiting lists exist within MHEWS (CBT, IPTA, family therapy, creative), with variable waits by modality not currently visible in a single view.</p>
+      </div>
+    `
+  },
+  "allocation-notification": {
+    title: "Practitioner Allocation Notification",
+    phase: "Phase 2 — Assessment and Allocation",
+    html: `
+      <h4>What happens</h4>
+      <p>When a case is allocated to a practitioner, they receive a formal notification confirming the allocation, key details about the young person, and any relevant deadlines.</p>
+      <h4>Target</h4>
+      <p>A formal allocation notification with defined parameters, supplemented by a visual indicator in RiO (e.g. a colour flag on the case record). This ensures no case is allocated without the practitioner being actively informed.</p>
+      <h4>System interactions</h4>
+      <p><span class="detail-system-tag">RiO</span> Allocation recorded; colour flag applied to case.</p>
+      <div class="detail-current">
+        <div class="current-label">Current practice</div>
+        <p>There is no systematic allocation notification. The onus is on practitioners to check their own caseload list in RiO. A practice lead may sometimes send an email, but this is inconsistent.</p>
+      </div>
+    `
+  },
+  "pod-setup": {
+    title: "POD Account Setup",
+    phase: "Phase 2 — Assessment and Allocation",
+    html: `
+      <h4>What happens</h4>
+      <p>An account is created for the young person on the POD outcome measures platform. This enables baseline outcome measures to be collected ahead of the first appointment.</p>
+      <h4>System interactions</h4>
+      <p><span class="detail-system-tag">POD</span> Account created and linked to the young person’s record.</p>
+      <div class="detail-current">
+        <div class="current-label">Current practice</div>
+        <p>POD setup timing is inconsistent — it sometimes happens at the advice-and-guidance stage, sometimes at the iSPA referral stage, and is handled by admin. MHEWS is moving toward setup pre-assessment, but this is not yet standard across both streams.</p>
+      </div>
+    `
+  },
+  "welcome-pack": {
+    title: "Welcome Pack Sent",
+    phase: "Phase 2 — Assessment and Allocation",
+    html: `
+      <h4>What happens</h4>
+      <p>At the point of allocation, the young person and their family receive a standard welcome and induction pack. This includes information about the service, what to expect, consent forms, attendance expectations, and complaints information.</p>
+      <p>Parents and young people are aware that information sharing with GPs is a condition of the service and should they wish to opt out from this, they will opt out from the service.</p>
+      <h4>Target</h4>
+      <p>A consistent, standard welcome pack sent at the point of allocation to every young person accepted into a Bromley Y stream. This should be a defined, repeatable step rather than relying on individual practitioner action.</p>
+      <div class="detail-current">
+        <div class="current-label">Current practice</div>
+        <p>Welcome communication is inconsistent. Consent and attendance forms are not routinely sent at a standard point. A complaints form is not currently included.</p>
+      </div>
+    `
+  },
+  "waiting-well": {
+    title: "Waiting Well Check-ins",
+    phase: "Phase 2 — Assessment and Allocation",
+    html: `
+      <h4>What happens</h4>
+      <p>While a young person is waiting for their intervention to begin, Bromley Y maintains contact through scheduled check-in calls. These serve to monitor wellbeing, review any safety plans in place, and provide interim support such as links to guided self-help resources (e.g. Silvercloud).</p>
+      <h4>Target</h4>
+      <p>Standardised check-ins at defined intervals for higher-risk cases, with automated prompts in the system to ensure consistency.</p>
+      <div class="detail-current">
+        <div class="current-label">Current practice</div>
+        <p>Check-ins are not as consistent where they could be; some variation of practice between practitioners and streams.</p>
+      </div>
+    `
+  },
+  "rrp-review": {
+    title: "Risk Review Panel (RRP)",
+    phase: "Phase 2 — Assessment and Allocation",
+    html: `
+      <h4>What happens</h4>
+      <p>The Risk Review Panel meets weekly to review cases where there is a change in risk, a need for pathway change, or a practitioner-identified concern that the current approach is not meeting the young person’s needs. Possible outcomes include a change of modality, escalation to CAMHS (via referral back to iSPA for a considered move), or additional support measures.</p>
+      <h4>Who is involved</h4>
+      <p>Practice leads and management.</p>
+      <h4>Frequency</h4>
+      <p>Weekly, on Wednesdays.</p>
+    `
+  },
+  "baseline-measures": {
+    title: "Baseline Outcome Measures",
+    phase: "Phase 3 — Intervention and Discharge",
+    html: `
+      <h4>What happens</h4>
+      <p>Baseline outcome measures are collected before the first therapeutic session. These establish the young person’s starting point and provide the benchmark against which progress will be measured throughout the intervention and at discharge.</p>
+      <h4>System interactions</h4>
+      <p><span class="detail-system-tag">POD</span> Baseline measures captured and stored against the young person’s record.</p>
+    `
+  },
+  "first-appointment": {
+    title: "First Appointment",
+    phase: "Phase 3 — Intervention and Discharge",
+    html: `
+      <h4>What happens</h4>
+      <p>The young person attends their first therapeutic session with their allocated practitioner. The session confirms the intervention plan, establishes the therapeutic relationship, and reviews baseline outcome measures.</p>
+      <h4>System interactions</h4>
+      <p><span class="detail-system-tag">RiO</span> Progress note recorded. <span class="detail-system-tag">Outlook</span> and <span class="detail-system-tag">RiO</span> — Appointment booked.</p>
+      <div class="detail-question-box">
+        <div class="q-label">Known issue</div>
+        <p>Practitioners currently maintain appointments in both RiO and Outlook. This dual diary booking is a recognised pain point.</p>
+      </div>
+    `
+  },
+  "active-intervention": {
+    title: "Active Intervention",
+    phase: "Phase 3 — Intervention and Discharge",
+    html: `
+      <h4>What happens</h4>
+      <p>The young person receives their course of therapeutic intervention. A progress note is recorded in RiO after each session. Session numbers vary by modality. There is an aspiration for slight tightening of guidance on intervention length, while retaining clinical flexibility.</p>
+      <h4>System interactions</h4>
+      <p><span class="detail-system-tag">RiO</span> Progress note after each session; risk updates and safeguarding concerns as needed; appointments booked in calendar. <span class="detail-system-tag">Outlook</span> Appointments booked for each session.</p>
+      <h4>Known considerations</h4>
+      <p>Data entry into RiO during sessions is challenging in community and school settings due to connectivity issues. Where a young person does not attend (DNA), there should be a consistent follow-up process.</p>
+    `
+  },
+  "midpoint-measures": {
+    title: "Mid-point Outcome Measures",
+    phase: "Phase 3 — Intervention and Discharge",
+    html: `
+      <h4>What happens</h4>
+      <p>Mid-point outcome measures are collected during the intervention to track the young person’s progress and inform clinical decision-making. The detail of exactly when this is collected, and if this is compulsory or optional, needs further exploration.</p>
+      <h4>System interactions</h4>
+      <p><span class="detail-system-tag">POD</span> Mid-point measures captured and compared to baseline.</p>
+    `
+  },
+  "session-five-review": {
+    title: "Mid-point Review",
+    phase: "Phase 3 — Intervention and Discharge",
+    html: `
+      <h4>What happens</h4>
+      <p>At approximately session 5 (or the equivalent mid-point for shorter interventions), the practitioner reviews progress with their supervisor. This checkpoint considers whether the intervention is on track and whether any escalation or change of approach is needed.</p>
+      <h4>Possible outcomes</h4>
+      <ul>
+        <li>Continue on current pathway</li>
+        <li>Adjust approach or extend intervention</li>
+        <li>Escalate to RRP for review</li>
+        <li>Begin planning for discharge</li>
+      </ul>
+      <p>In most cases, this should be a case of planning for discharge.</p>
+    `
+  },
+  "rrp-escalation": {
+    title: "RRP Escalation",
+    phase: "Phase 3 — Intervention and Discharge",
+    html: `
+      <h4>What happens</h4>
+      <p>Where a case requires a pathway change — rising risk, a need to move between MHST and MHEWS, or a case that may no longer be appropriate for Bromley Y — it is referred to the weekly Risk Review Panel.</p>
+      <h4>Triggers</h4>
+      <ul>
+        <li>Change in presenting concern or risk level</li>
+        <li>Practitioner view that the current approach is not meeting need</li>
+        <li>Mid-point review identifies a need for escalation</li>
+      </ul>
+      <h4>Possible outcomes</h4>
+      <p>Change of modality within BY, referral back to iSPA for consideration of a move to CAMHS, or additional support measures.</p>
+    `
+  },
+  "end-measures": {
+    title: "End-of-Intervention Outcome Measures",
+    phase: "Phase 3 — Intervention and Discharge",
+    html: `
+      <h4>What happens</h4>
+      <p>End-of-intervention outcome measures are collected at the final session, providing the comparison point against baseline and mid-point data. These inform the closing summary and contribute to service-level reporting on outcomes.</p>
+      <h4>System interactions</h4>
+      <p><span class="detail-system-tag">POD</span> End measures captured; comparison to baseline and mid-point generated.</p>
+    `
+  },
+  "discharge-decision": {
+    title: "Discharge Decision",
+    phase: "Phase 3 — Intervention and Discharge",
+    html: `
+      <h4>What happens</h4>
+      <p>The decision to discharge a young person from the service is made with management oversight. The target is that no practitioner signs off a case without a review by their supervisor or practice lead.</p>
+      <h4>System interactions</h4>
+      <p><span class="detail-system-tag">RiO</span> Discharge decision recorded against the case.</p>
+    `
+  },
+  "closing-summary": {
+    title: "Closing Summary",
+    phase: "Phase 3 — Intervention and Discharge",
+    html: `
+      <h4>What happens</h4>
+      <p>A closing summary is completed for every case at discharge, recording the intervention delivered, outcomes achieved, and any recommendations for ongoing support. The format and consistency of closing summaries is an area for future standardisation.</p>
+      <h4>System interactions</h4>
+      <p><span class="detail-system-tag">RiO</span> Closing summary recorded against the case record.</p>
+    `
+  },
+  "gp-letter": {
+    title: "GP Discharge Notification",
+    phase: "Phase 3 — Intervention and Discharge",
+    html: `
+      <h4>What happens</h4>
+      <p>A discharge letter is sent to the young person’s GP, confirming that the case has been closed, summarising the intervention provided, and noting any recommendations. This ensures the GP record is updated and that continuity of care is maintained.</p>
+      <h4>System interactions</h4>
+      <p><span class="detail-system-tag">RiO</span> Letter generated and sent.</p>
+    `
+  },
+  "rio-discharge": {
+    title: "RiO Case Closure",
+    phase: "Phase 3 — Intervention and Discharge",
+    html: `
+      <h4>What happens</h4>
+      <p>The case is formally closed on RiO, updating the young person’s status to discharged. This triggers the system record to move to the discharged caseload and makes the case visible in discharge reporting.</p>
+      <h4>System interactions</h4>
+      <p><span class="detail-system-tag">RiO</span> Case status updated.</p>
+    `
+  },
+  "onward-referral": {
+    title: "Onward Referral",
+    phase: "Phase 3 — Intervention and Discharge",
+    html: `
+      <h4>What happens</h4>
+      <p>Where a young person needs further support beyond Bromley Y’s scope at the point of discharge, an onward referral is made to the appropriate service. This might include CAMHS, community services, school-based support, or voluntary sector provision.</p>
+    `
+  }
+};
+
+const overlay = document.getElementById('detailOverlay');
+const titleEl = document.getElementById('detailTitle');
+const phaseEl = document.getElementById('detailPhase');
+const bodyEl = document.getElementById('detailBody');
+document.getElementById('detailClose').addEventListener('click', closeDetail);
+overlay.addEventListener('click', (e) => { if (e.target === overlay) closeDetail(); });
+document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeDetail(); });
+document.querySelectorAll('.step-card[data-detail]').forEach(card => {
+  card.addEventListener('click', () => {
+    const d = details[card.getAttribute('data-detail')];
+    if (!d) return;
+    titleEl.textContent = d.title;
+    phaseEl.textContent = d.phase;
+    bodyEl.innerHTML = d.html;
+    overlay.classList.add('visible');
+    document.body.style.overflow = 'hidden';
+  });
+});
+function closeDetail() { overlay.classList.remove('visible'); document.body.style.overflow = ''; }
+</script>
+</body>
+</html>
