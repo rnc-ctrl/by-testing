@@ -328,7 +328,7 @@
     <div class="grid-cell">
       <div class="step-card card-meeting" data-detail="ispa-decision">
         <span class="expand-icon">&#9662;</span>
-        <div class="step-title">iSPA decision</div>
+        <div class="step-title">iSPA recommendation</div>
         <div class="step-brief">Daily whole-team review: 13.00</div>
         <div class="card-tags"><span class="card-tag">RiO</span></div>
       </div>
@@ -356,11 +356,10 @@
       </div>
     </div>
     <div class="grid-cell">
-      <div class="step-card card-process" data-detail="stream-allocation">
+      <div class="step-card card-comms" data-detail="by-contact-pack">
         <span class="expand-icon">&#9662;</span>
-        <div class="step-title">Provisional allocation</div>
-        <div class="step-brief">MHST or MHEWS</div>
-        <div class="card-tags"><span class="card-tag">RiO</span></div>
+        <div class="step-title">BY contact email + assessment pack</div>
+        <div class="step-brief">Welcome, consents, what to expect</div>
       </div>
     </div>
   </div>
@@ -371,24 +370,33 @@
   <div class="phase-header">
     <div class="phase-number">2</div>
     <h2>Assessment and Allocation</h2>
-    <span class="phase-desc">Stream entry &rarr; first appointment</span>
+    <span class="phase-desc">Centralised assessment &rarr; allocation to practitioner</span>
   </div>
-  <div class="step-bar" style="grid-template-columns: 120px repeat(5, 1fr);">
+  <div class="step-bar" style="grid-template-columns: 120px repeat(6, 1fr);">
     <div class="step-bar-label">Step</div>
     <div class="step-bar-cell"><span class="step-num">1</span><div class="step-arrow"></div></div>
     <div class="step-bar-cell"><span class="step-num">2</span><div class="step-arrow"></div></div>
     <div class="step-bar-cell"><span class="step-num">3</span><div class="step-arrow"></div></div>
     <div class="step-bar-cell"><span class="step-num">4</span><div class="step-arrow"></div></div>
-    <div class="step-bar-cell"><span class="step-num">5</span></div>
+    <div class="step-bar-cell"><span class="step-num">5</span><div class="step-arrow"></div></div>
+    <div class="step-bar-cell"><span class="step-num">6</span></div>
   </div>
-  <div class="swim-grid" style="grid-template-columns: 120px repeat(5, 1fr);">
+  <div class="swim-grid" style="grid-template-columns: 120px repeat(6, 1fr);">
 
     <div class="lane-label">BY Clinical<br>Team</div>
     <div class="grid-cell">
       <div class="step-card card-process" data-detail="assessment">
         <span class="expand-icon">&#9662;</span>
-        <div class="step-title">Assessment</div>
-        <div class="step-brief">Standard BY assessment</div>
+        <div class="step-title">Centralised assessment</div>
+        <div class="step-brief">Single BY assessor</div>
+        <div class="card-tags"><span class="card-tag">RiO</span></div>
+      </div>
+    </div>
+    <div class="grid-cell">
+      <div class="step-card card-process" data-detail="stream-allocation">
+        <span class="expand-icon">&#9662;</span>
+        <div class="step-title">Stream allocation</div>
+        <div class="step-brief">MHST or MHEWS &mdash; agreed at joint BY review</div>
         <div class="card-tags"><span class="card-tag">RiO</span></div>
       </div>
     </div>
@@ -400,6 +408,8 @@
         <div class="card-tags"><span class="card-tag">RiO</span></div>
       </div>
     </div>
+    <div class="grid-cell empty"></div>
+    <div class="grid-cell empty"></div>
     <div class="grid-cell">
       <div class="step-card card-comms" data-detail="allocation-notification">
         <span class="expand-icon">&#9662;</span>
@@ -408,24 +418,38 @@
         <div class="card-tags"><span class="card-tag">RiO</span></div>
       </div>
     </div>
-    <div class="grid-cell empty"></div>
-    <div class="grid-cell empty"></div>
 
-    <div class="lane-label">Waiting<br>Support</div>
-    <div class="grid-cell">
-      <div class="step-card card-system" data-detail="pod-setup">
-        <span class="expand-icon">&#9662;</span>
-        <div class="step-title">POD setup</div>
-        <div class="step-brief">Account created for outcome measures</div>
-        <div class="card-tags"><span class="card-tag">POD</span></div>
-      </div>
-    </div>
+    <div class="lane-label">Comms</div>
+    <div class="grid-cell empty"></div>
+    <div class="grid-cell empty"></div>
     <div class="grid-cell empty"></div>
     <div class="grid-cell">
       <div class="step-card card-comms" data-detail="welcome-pack">
         <span class="expand-icon">&#9662;</span>
-        <div class="step-title">Welcome pack sent</div>
-        <div class="step-brief">Standard induction pack</div>
+        <div class="step-title">Welcome pack</div>
+        <div class="step-brief">What to expect; signposting; MHST school consent</div>
+      </div>
+    </div>
+    <div class="grid-cell empty"></div>
+    <div class="grid-cell empty"></div>
+
+    <div class="lane-label">Waiting<br>Support</div>
+    <div class="grid-cell empty"></div>
+    <div class="grid-cell empty"></div>
+    <div class="grid-cell empty"></div>
+    <div class="grid-cell">
+      <div class="step-card card-system" data-detail="pod-setup">
+        <span class="expand-icon">&#9662;</span>
+        <div class="step-title">POD setup</div>
+        <div class="step-brief">Login details issued via welcome pack</div>
+        <div class="card-tags"><span class="card-tag">POD</span></div>
+      </div>
+    </div>
+    <div class="grid-cell">
+      <div class="step-card card-process" data-detail="waitlist">
+        <span class="expand-icon">&#9662;</span>
+        <div class="step-title">Waitlist (if applicable)</div>
+        <div class="step-brief">Wait for service slot &mdash; both streams</div>
       </div>
     </div>
     <div class="grid-cell">
@@ -435,9 +459,9 @@
         <div class="step-brief">Standardised contact at intervals</div>
       </div>
     </div>
-    <div class="grid-cell empty"></div>
 
     <div class="lane-label">Management<br>/ MDT</div>
+    <div class="grid-cell empty"></div>
     <div class="grid-cell empty"></div>
     <div class="grid-cell empty"></div>
     <div class="grid-cell empty"></div>
@@ -459,28 +483,40 @@
     <h2>Intervention and Discharge</h2>
     <span class="phase-desc">First session &rarr; case closure</span>
   </div>
-  <div class="step-bar" style="grid-template-columns: 120px repeat(7, 1fr);">
+  <div class="step-bar" style="grid-template-columns: 120px repeat(6, 1fr);">
     <div class="step-bar-label">Step</div>
     <div class="step-bar-cell"><span class="step-num">1</span><div class="step-arrow"></div></div>
     <div class="step-bar-cell"><span class="step-num">2</span><div class="step-arrow"></div></div>
     <div class="step-bar-cell"><span class="step-num">3</span><div class="step-arrow"></div></div>
     <div class="step-bar-cell"><span class="step-num">4</span><div class="step-arrow"></div></div>
     <div class="step-bar-cell"><span class="step-num">5</span><div class="step-arrow"></div></div>
-    <div class="step-bar-cell"><span class="step-num">6</span><div class="step-arrow"></div></div>
-    <div class="step-bar-cell"><span class="step-num">7</span></div>
+    <div class="step-bar-cell"><span class="step-num">6</span></div>
   </div>
-  <div class="swim-grid" style="grid-template-columns: 120px repeat(7, 1fr);">
+  <div class="swim-grid" style="grid-template-columns: 120px repeat(6, 1fr);">
+
+    <div class="lane-label">Comms</div>
+    <div class="grid-cell">
+      <div class="step-card card-comms" data-detail="first-appointment-pack">
+        <span class="expand-icon">&#9662;</span>
+        <div class="step-title">First appointment pack</div>
+        <div class="step-brief">What to expect in delivery</div>
+      </div>
+    </div>
+    <div class="grid-cell empty"></div>
+    <div class="grid-cell empty"></div>
+    <div class="grid-cell empty"></div>
+    <div class="grid-cell empty"></div>
+    <div class="grid-cell empty"></div>
 
     <div class="lane-label">Outcome<br>Measures</div>
     <div class="grid-cell">
       <div class="step-card card-system" data-detail="baseline-measures">
         <span class="expand-icon">&#9662;</span>
         <div class="step-title">Baseline measures</div>
-        <div class="step-brief">Collected before first session</div>
+        <div class="step-brief">Issued at the time of the first appointment</div>
         <div class="card-tags"><span class="card-tag">POD</span></div>
       </div>
     </div>
-    <div class="grid-cell empty"></div>
     <div class="grid-cell empty"></div>
     <div class="grid-cell">
       <div class="step-card card-system" data-detail="midpoint-measures">
@@ -502,7 +538,6 @@
     <div class="grid-cell empty"></div>
 
     <div class="lane-label">Practitioner</div>
-    <div class="grid-cell empty"></div>
     <div class="grid-cell">
       <div class="step-card card-process" data-detail="first-appointment">
         <span class="expand-icon">&#9662;</span>
@@ -525,7 +560,6 @@
     <div class="grid-cell empty"></div>
 
     <div class="lane-label">Supervision<br>/ Review</div>
-    <div class="grid-cell empty"></div>
     <div class="grid-cell empty"></div>
     <div class="grid-cell empty"></div>
     <div class="grid-cell">
@@ -557,7 +591,6 @@
     <div class="grid-cell empty"></div>
     <div class="grid-cell empty"></div>
     <div class="grid-cell empty"></div>
-    <div class="grid-cell empty"></div>
     <div class="grid-cell">
       <div class="step-card card-process" data-detail="closing-summary">
         <span class="expand-icon">&#9662;</span>
@@ -576,7 +609,6 @@
     </div>
 
     <div class="lane-label">System /<br>Onward</div>
-    <div class="grid-cell empty"></div>
     <div class="grid-cell empty"></div>
     <div class="grid-cell empty"></div>
     <div class="grid-cell empty"></div>
@@ -657,24 +689,25 @@ const details = {
     `
   },
   "ispa-decision": {
-    title: "iSPA Decision Meeting",
+    title: "iSPA Recommendation Meeting",
     phase: "Phase 1 — Referral and Front Door",
     html: `
       <h4>What happens</h4>
-      <p>A daily iSPA team meeting makes the substantive decision on each referral following the detailed review by practitioners. Possible outcomes are:</p>
+      <p>A daily iSPA team meeting reviews each referral following the detailed review by practitioners and makes a recommendation on next steps. Possible outcomes are:</p>
       <ul>
-        <li><strong>Accept into Bromley Y</strong> — case proceeds to stream allocation</li>
-        <li><strong>Refer to CAMHS</strong> — case requires specialist mental health services beyond BY’s scope</li>
-        <li><strong>Request more information</strong> — insufficient detail to make a safe decision</li>
+        <li><strong>Recommend to Bromley Y</strong> — case is forwarded to the joint BY review for formal acceptance and triage</li>
+        <li><strong>Refer to CAMHS</strong> — case requires specialist mental health services beyond BY's scope</li>
+        <li><strong>Request more information</strong> — insufficient detail to make a safe recommendation</li>
         <li><strong>Signpost</strong> — redirect to a more appropriate service</li>
         <li><strong>Discharge</strong> — referral does not meet threshold</li>
       </ul>
-      <p>Target: referrals decided within 72 hours of receipt; typical timescale is around 10 working days.</p>
+      <p>The iSPA recommendation is the gateway into Bromley Y's internal process. The formal acceptance decision &mdash; and the triage of risk and suitability for Bromley Y &mdash; sits with the joint BY review that follows.</p>
+      <p>Target: referrals reach a recommendation within 72 hours of receipt; typical timescale is around 10 working days.</p>
       <h4>System interactions</h4>
-      <p><span class="detail-system-tag">RiO</span> Decision and outcome recorded against the referral.</p>
+      <p><span class="detail-system-tag">RiO</span> Recommendation and outcome recorded against the referral.</p>
       <div class="detail-current">
         <div class="current-label">Current practice</div>
-        <p>This meeting currently runs daily at 13:00. Currently the iSPA make a recommendation on MHST vs MHEWS but the preference is for this to be moved into the internal Bromley Y joint review.</p>
+        <p>This meeting currently runs daily at 13:00.</p>
       </div>
     `
   },
@@ -693,34 +726,63 @@ const details = {
     phase: "Phase 1 — Referral and Front Door",
     html: `
       <h4>What happens</h4>
-      <p>Once a referral has been accepted into Bromley Y, a joint review determines which delivery stream is the best fit for the young person. This is a single decision point involving both MHST and MHEWS, ensuring that the allocation is informed by the full range of Bromley Y’s offer.</p>
-      <p>The decision will be informed by both the context of the referral (e.g. MHST are more likely to take referrals linked to the school environment) and the modality of likely support (MHEWS have a greater range of therapeutic modalities e.g. CBT, family therapy, creative arts).</p>
+      <p>Following the iSPA recommendation, the joint Bromley Y review is the formal acceptance decision into the service. It is also the point at which the team triages the case &mdash; reviewing potential risks and confirming that Bromley Y is the right fit for the young person, rather than CAMHS or another service.</p>
+      <p>The joint BY review brings both MHST and MHEWS together in a single forum so that suitability and any indicated risks are considered with the full range of Bromley Y's offer in view. Stream allocation is not made at this stage &mdash; it follows the centralised assessment and is picked up at a subsequent joint BY review (see Phase 2).</p>
+      <h4>Outcomes</h4>
+      <ul>
+        <li><strong>Accept into Bromley Y</strong> &mdash; case proceeds to BY contact email and assessment pack</li>
+        <li><strong>Decline / redirect</strong> &mdash; case returned to iSPA for an alternative recommendation (e.g. CAMHS)</li>
+      </ul>
       <div class="detail-current">
         <div class="current-label">Current practice</div>
-        <p>There is no joint MHST/MHEWS review meeting at present. Each stream runs its own review independently after iSPA screening. Cases sometimes bounce between MHST and MHEWS when the initial allocation from iSPA proves incorrect. The target is a single joint review to make this decision once.</p>
+        <p>There is no joint MHST/MHEWS review meeting at present. Each stream runs its own review independently after iSPA screening, and cases sometimes bounce between MHST and MHEWS when the initial allocation proves incorrect. The target is a single joint forum that handles both the acceptance decision and the later allocation decision once.</p>
       </div>
     `
   },
-  "stream-allocation": {
-    title: "Provisional Allocation",
+  "by-contact-pack": {
+    title: "BY Contact Email and Assessment Pack",
     phase: "Phase 1 — Referral and Front Door",
     html: `
       <h4>What happens</h4>
-      <p>The young person is provisionally allocated to either MHST or MHEWS based on the joint review decision. The case moves into the shared assessment and allocation workflow.</p>
-      <h4>System interactions</h4>
-      <p><span class="detail-system-tag">RiO</span> Case record updated with stream allocation.</p>
+      <p>Once the joint BY review has accepted the young person into Bromley Y, the family receives a contact email from the service. The email confirms acceptance, introduces what to expect next, and includes the assessment pack as the first substantive piece of communication.</p>
+      <h4>What the assessment pack contains</h4>
+      <ul>
+        <li>What to expect at the centralised assessment &mdash; format, who they will meet, how long it takes</li>
+        <li>Consent forms covering all consents required at this stage of the journey, including data sharing with the young person's GP</li>
+        <li>Information about Bromley Y's service and how it works</li>
+      </ul>
+      <p>Data sharing with the GP is opt-out only. If a family wishes to opt out of GP information sharing, the young person may not be able to access the service &mdash; this is communicated up-front in the pack so families can make an informed decision before assessment.</p>
+      <h4>Target</h4>
+      <p>A consistent, standard contact email and assessment pack issued at the point of acceptance, replacing today's variable practice. This becomes the earliest opportunity to gather consent and to set expectations.</p>
     `
   },
-  "assessment": {
-    title: "Standard BY Assessment",
+  "stream-allocation": {
+    title: "Stream Allocation",
     phase: "Phase 2 — Assessment and Allocation",
     html: `
       <h4>What happens</h4>
-      <p>The practitioner conducts a standard Bromley Y assessment using the newly developed BY standard assessment form. This is a shared assessment process across both MHST and MHEWS, though the delivery setting and content of what each service can offer carries. Fuller assessment may be carried out where there are neurodiversity indicators or additional complexity. The assessment informs modality matching.</p>
+      <p>Following centralised assessment, the young person is allocated to either MHST or MHEWS. The decision is taken at a subsequent joint BY review &mdash; the same forum that accepted the case in Phase 1, now reconvening to agree the right stream and modality based on the assessment findings.</p>
+      <p>Centralising the allocation decision in the joint BY review prevents cases bouncing between streams and ensures the full range of Bromley Y's offer is considered once, with the assessment in front of the team.</p>
+      <h4>System interactions</h4>
+      <p><span class="detail-system-tag">RiO</span> Stream allocation recorded against the case.</p>
+      <div class="detail-current">
+        <div class="current-label">To be discussed with the team</div>
+        <p>The exact format of the joint BY review's second touch &mdash; how often it convenes for allocation decisions, who attends, and how it relates to the initial acceptance review &mdash; is to be agreed with the operational team.</p>
+      </div>
+    `
+  },
+  "assessment": {
+    title: "Centralised Assessment",
+    phase: "Phase 2 — Assessment and Allocation",
+    html: `
+      <h4>What happens</h4>
+      <p>The young person attends a centralised Bromley Y assessment, conducted by a single dedicated assessor rather than by an MHST or MHEWS practitioner. Using one assessor for all incoming cases produces a consistent assessment record and ensures that subsequent stream allocation is based on a clear, comparable picture of the young person's needs.</p>
+      <p>The standard BY assessment form is used. Fuller assessment may be carried out where there are neurodiversity indicators or additional complexity. The output of the assessment goes into the joint BY review for stream allocation.</p>
+      <p>Consents required at this point will already have been gathered via the assessment pack issued in Phase 1, so the assessment can focus on clinical content rather than administrative set-up.</p>
       <h4>System interactions</h4>
       <p><span class="detail-system-tag">RiO</span> Assessment form completed and saved.</p>
       <h4>Known considerations</h4>
-      <p>MHST practitioners accessing RiO from schools often experience bandwidth issues via VPN, leading to manual completion of forms and later upload. Bromley Y is collating a list of access problems to inform the digital transformation requirements.</p>
+      <p>Bromley Y is collating a list of community-access and connectivity problems to inform the digital transformation requirements. Centralising the assessment removes some of these constraints, but offline-capable data entry remains a requirement for assessments delivered outside the office.</p>
     `
   },
   "pathway-planning": {
@@ -728,12 +790,13 @@ const details = {
     phase: "Phase 2 — Assessment and Allocation",
     html: `
       <h4>What happens</h4>
-      <p>Following assessment, the intervention approach is agreed. The pathway plan confirms the therapeutic approach, anticipated number of sessions, and any specific goals. Target: pathway planning should be a distinct, formally recorded step post-assessment, with joint cross-stream discussion where cases are complex or sit at the boundary.</p>
+      <p>Following stream allocation, the practitioner team for the allocated stream agrees the pathway. The pathway plan confirms the therapeutic approach, the expected number of sessions tied to the modality (e.g. CBT, IPTA, family therapy, creative arts), and any specific goals.</p>
+      <p>Where there is a wait for the agreed service, the young person enters the relevant waitlist at this point. Both MHST and MHEWS may have waits, and within MHEWS waits vary by modality.</p>
       <h4>System interactions</h4>
       <p><span class="detail-system-tag">RiO</span> Pathway plan recorded against the case.</p>
       <div class="detail-current">
         <div class="current-label">Current practice</div>
-        <p>Pathway planning is currently handled within each team separately. Cross-team planning happens ad hoc via email or informal contact between practice leads when a case needs to move streams. Modality-specific waiting lists exist within MHEWS (CBT, IPTA, family therapy, creative), with variable waits by modality not currently visible in a single view.</p>
+        <p>Pathway planning is currently handled within each team separately and modality-specific waiting lists within MHEWS (CBT, IPTA, family therapy, creative) are not visible in a single view. The target is one consolidated waitlist view across both streams.</p>
       </div>
     `
   },
@@ -742,7 +805,7 @@ const details = {
     phase: "Phase 2 — Assessment and Allocation",
     html: `
       <h4>What happens</h4>
-      <p>When a case is allocated to a practitioner, they receive a formal notification confirming the allocation, key details about the young person, and any relevant deadlines.</p>
+      <p>When a slot becomes available and the case is ready to start, the allocated practitioner receives a formal notification confirming the allocation, key details about the young person, and any relevant deadlines. This sits after the waitlist so that practitioners are notified at the point a case is genuinely ready to begin.</p>
       <h4>Target</h4>
       <p>A formal allocation notification with defined parameters, supplemented by a visual indicator in RiO (e.g. a colour flag on the case record). This ensures no case is allocated without the practitioner being actively informed.</p>
       <h4>System interactions</h4>
@@ -758,27 +821,51 @@ const details = {
     phase: "Phase 2 — Assessment and Allocation",
     html: `
       <h4>What happens</h4>
-      <p>An account is created for the young person on the POD outcome measures platform. This enables baseline outcome measures to be collected ahead of the first appointment.</p>
+      <p>An account is created for the young person on the POD outcome measures platform. POD setup runs in parallel with the welcome pack so that the login details can be issued to the family inside the welcome pack &mdash; rather than as a separate communication later.</p>
+      <p>The account is in place ahead of the first appointment, when the baseline measure is issued.</p>
       <h4>System interactions</h4>
-      <p><span class="detail-system-tag">POD</span> Account created and linked to the young person’s record.</p>
+      <p><span class="detail-system-tag">POD</span> Account created and linked to the young person's record.</p>
       <div class="detail-current">
         <div class="current-label">Current practice</div>
-        <p>POD setup timing is inconsistent — it sometimes happens at the advice-and-guidance stage, sometimes at the iSPA referral stage, and is handled by admin. MHEWS is moving toward setup pre-assessment, but this is not yet standard across both streams.</p>
+        <p>POD setup timing is inconsistent today &mdash; it sometimes happens at the advice-and-guidance stage, sometimes at iSPA referral, and is handled by admin. The target is consistent timing aligned with the welcome pack.</p>
       </div>
     `
   },
   "welcome-pack": {
-    title: "Welcome Pack Sent",
+    title: "Welcome Pack",
     phase: "Phase 2 — Assessment and Allocation",
     html: `
       <h4>What happens</h4>
-      <p>At the point of allocation, the young person and their family receive a standard welcome and induction pack. This includes information about the service, what to expect, consent forms, attendance expectations, and complaints information.</p>
-      <p>Parents and young people are aware that information sharing with GPs is a condition of the service and should they wish to opt out from this, they will opt out from the service.</p>
+      <p>Once stream allocation and pathway planning are complete, the young person and their family receive a standard welcome pack. This is the substantive welcome to the service stream they will be working with, and the practical pack for the wait period and start of intervention.</p>
+      <h4>What the welcome pack contains</h4>
+      <ul>
+        <li>An overview of what to expect from the service and the wait period</li>
+        <li>Signposting to the Silvercloud early-intervention offer for use during any wait</li>
+        <li>POD login details (so the family can access the platform when the baseline measure is issued)</li>
+        <li>Attendance expectations and complaints information</li>
+        <li><strong>For MHST cases only:</strong> consent for data sharing with the young person's school, captured at this point because the relationship with the school is specific to the MHST stream</li>
+      </ul>
+      <p>The general consents (including GP data sharing) are gathered earlier via the assessment pack, so the welcome pack focuses on what families need for the wait and the start of intervention.</p>
       <h4>Target</h4>
-      <p>A consistent, standard welcome pack sent at the point of allocation to every young person accepted into a Bromley Y stream. This should be a defined, repeatable step rather than relying on individual practitioner action.</p>
+      <p>A consistent, standard welcome pack sent at the point of pathway planning for every young person, with the MHST-specific school consent layered in for that stream. This should be a defined, repeatable step rather than relying on individual practitioner action.</p>
       <div class="detail-current">
         <div class="current-label">Current practice</div>
         <p>Welcome communication is inconsistent. Consent and attendance forms are not routinely sent at a standard point. A complaints form is not currently included.</p>
+      </div>
+    `
+  },
+  "waitlist": {
+    title: "Waitlist (if applicable)",
+    phase: "Phase 2 — Assessment and Allocation",
+    html: `
+      <h4>What happens</h4>
+      <p>Where there is a wait for the agreed pathway, the young person enters the waitlist for that service. Both MHST and MHEWS may have waits, and within MHEWS the wait varies by modality (CBT, IPTA, family therapy, creative arts).</p>
+      <p>While on the waitlist, the young person has access to the Silvercloud early-intervention offer (signposted in the welcome pack) and to the waiting well check-ins from Bromley Y.</p>
+      <h4>Target</h4>
+      <p>One consolidated, real-time view of waiting lists across both streams and all modalities, so that wait times are visible to operational management and to the family. Cases on the waitlist should be routinely reviewed for changes in risk or presentation.</p>
+      <div class="detail-current">
+        <div class="current-label">Current practice</div>
+        <p>Waiting list visibility is fragmented today. MHST cases sit on school-level and practitioner-level lists; MHEWS cases sit on per-modality lists; a single case can also appear on multiple admin lists. Waiting times are not reliably reported.</p>
       </div>
     `
   },
@@ -808,14 +895,32 @@ const details = {
       <p>Weekly, on Wednesdays.</p>
     `
   },
+  "first-appointment-pack": {
+    title: "First Appointment Pack",
+    phase: "Phase 3 — Intervention and Discharge",
+    html: `
+      <h4>What happens</h4>
+      <p>Ahead of the first appointment, the young person and their family receive a "what to expect in your first appointment" pack. This is the third and final standard pack in the journey, focused on the practical experience of starting service delivery rather than on the wait or the assessment.</p>
+      <h4>What the pack contains</h4>
+      <ul>
+        <li>What to expect at the first session &mdash; format, length, what the practitioner will cover</li>
+        <li>How sessions will be delivered going forward (in school, at BY, online &mdash; depending on the modality and stream)</li>
+        <li>How outcome measures, progress notes, and any further forms fit into the journey</li>
+        <li>Practical detail: location, what to bring, who to contact if plans change</li>
+      </ul>
+      <h4>Target</h4>
+      <p>A consistent first appointment pack issued in line with first-appointment booking, so that families arrive informed and the practitioner can spend the session on therapeutic content rather than orientation.</p>
+    `
+  },
   "baseline-measures": {
     title: "Baseline Outcome Measures",
     phase: "Phase 3 — Intervention and Discharge",
     html: `
       <h4>What happens</h4>
-      <p>Baseline outcome measures are collected before the first therapeutic session. These establish the young person’s starting point and provide the benchmark against which progress will be measured throughout the intervention and at discharge.</p>
+      <p>The baseline outcome measure is issued at the time of the first appointment. It establishes the young person's starting point and provides the benchmark against which progress will be measured at the mid-point and at discharge.</p>
+      <p>POD account login details have already been issued via the welcome pack, so the family can complete the measure on the platform without further set-up.</p>
       <h4>System interactions</h4>
-      <p><span class="detail-system-tag">POD</span> Baseline measures captured and stored against the young person’s record.</p>
+      <p><span class="detail-system-tag">POD</span> Baseline measures captured and stored against the young person's record.</p>
     `
   },
   "first-appointment": {
